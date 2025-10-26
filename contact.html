@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - European Learning Institute</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/contact.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Three.js Background -->
+    <div id="three-bg"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <img src="assets/images/logo-size-eli.jpg" alt="ELI Logo">
+                <h1>EUROPEAN LEARNING INSTITUTE</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="courses.html"><i class="fas fa-graduation-cap"></i> Courses</a></li>
+                    <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                    <li><a href="about.html"><i class="fas fa-users"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>Get In Touch With Us</h2>
+            <p>We'd love to hear from you. Reach out to us for any inquiries or assistance.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Information</h2>
+                <p>Feel free to reach out to us through any of the following channels</p>
+            </div>
+
+            <div class="contact-container">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3><i class="fas fa-map-marker-alt"></i> Our Location</h3>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="info-details">
+                                <h4>Address</h4>
+                                <p>House # 9 Street # 1A 36/D Landhi # 4 Zamanabad</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fas fa-phone"></i> Contact Details</h3>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <div class="info-details">
+                                <h4>Phone</h4>
+                                <p>+92 311 2515987</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div class="info-details">
+                                <h4>Email</h4>
+                                <p>elipakistan155@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fas fa-clock"></i> Working Hours</h3>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <div class="info-details">
+                                <h4>Opening Hours</h4>
+                                <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                                <p>Saturday: 10:00 AM - 4:00 PM</p>
+                                <p>Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fas fa-share-alt"></i> Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3><i class="fas fa-paper-plane"></i> Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-message" id="formMessage"></div>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" placeholder="Enter subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" placeholder="Enter your message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map-section">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.7555740000003!2d67.071535!3d24.907555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f2b0b000001%3A0x0!2sEuropean%20Learning%20Institute!5e0!3m2!1sen!2s!4v1650000000000!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About ELI</h3>
+                    <p>European Learning Institute is committed to providing quality education in computer skills, language proficiency, and coaching to empower individuals for personal and professional growth.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><i class="fas fa-chevron-right"></i> <a href="index.html" style="color: #adb5bd; text-decoration: none;">Home</a></p>
+                    <p><i class="fas fa-chevron-right"></i> <a href="courses.html" style="color: #adb5bd; text-decoration: none;">Courses</a></p>
+                    <p><i class="fas fa-chevron-right"></i> <a href="events.html" style="color: #adb5bd; text-decoration: none;">Events</a></p>
+                    <p><i class="fas fa-chevron-right"></i> <a href="about.html" style="color: #adb5bd; text-decoration: none;">About Us</a></p>
+                    <p><i class="fas fa-chevron-right"></i> <a href="contact.html" style="color: #adb5bd; text-decoration: none;">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> House # 9 Street # 1A 36/D Landhi # 4 Zamanabad</p>
+                    <p><i class="fas fa-phone"></i> +92 311 2515987</p>
+                    <p><i class="fas fa-envelope"></i> elipakistan155@gmail.com</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 European Learning Institute. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/contact.js"></script>
+</body>
+</html>

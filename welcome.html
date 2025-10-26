@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to European Learning Institute</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .welcome-scene {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(ellipse at center, #1a1a1a 0%, #0a0a0a 70%);
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .welcome-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-text {
+            font-size: 3.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 12px;
+            margin-bottom: 2rem;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        .institute-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            color: #aaa;
+            margin-top: -1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .loading-indicator {
+            width: 200px;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            margin: 0 auto;
+            border-radius: 1px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ffffff, #cccccc);
+            border-radius: 1px;
+            transition: width 0.1s linear;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ffffff;
+            border-radius: 50%;
+            animation: particleFloat linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes particleFloat {
+            to {
+                transform: translateY(-100px) translateX(20px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .main-content {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .main-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 500;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: #ffffff;
+        }
+
+        .courses-intro {
+            text-align: center;
+            margin: 2rem 0 3rem;
+            font-size: 1.1rem;
+            color: #cccccc;
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease 0.3s;
+        }
+
+        .courses-intro.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .courses-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            max-height: 65vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        /* Custom scrollbar styling */
+        .courses-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .courses-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+        }
+        
+        .courses-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+        }
+        
+        .courses-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .course-card {
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.8rem;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-card:hover::before {
+            opacity: 1;
+        }
+
+        .course-title {
+            color: #ffffff;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .course-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.5);
+            transition: width 0.4s ease;
+        }
+
+        .course-card:hover .course-title::after {
+            width: 60px;
+        }
+
+        .course-content {
+            color: #aaaaaa;
+            margin: 0.8rem 0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .duration {
+            color: #cccccc;
+            font-weight: 400;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .duration::before {
+            content: '⏱';
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+
+        /* Animation for course cards appearing */
+        .course-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: cardAppear 0.6s forwards;
+        }
+
+        @keyframes cardAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-indicator {
+            text-align: center;
+            margin-top: 2.5rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeInOut 3s infinite 2s;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .welcome-text {
+                font-size: 1.8rem;
+                letter-spacing: 8px;
+            }
+            
+            .institute-subtitle {
+                font-size: 1rem;
+                letter-spacing: 4px;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .courses-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .loading-indicator {
+                width: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-text {
+                font-size: 1.5rem;
+                letter-spacing: 6px;
+            }
+            
+            .institute-subtitle {
+                font-size: 0.9rem;
+                letter-spacing: 3px;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Scene -->
+    <div class="welcome-scene" id="welcomeScene">
+        <div class="welcome-content">
+            <div class="welcome-text">EUROPEAN LEARNING INSTITUTE</div>
+            <div class="institute-subtitle">EDUCATION EXCELLENCE</div>
+            <div class="loading-indicator">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+        </div>
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="assets/images/logo-size-eli.jpg" alt="ELI Logo">
+                <h1>EUROPEAN LEARNING INSTITUTE</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="courses.html"><i class="fas fa-graduation-cap"></i> Courses</a></li>
+                    <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                    <li><a href="about.html"><i class="fas fa-users"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <h1 class="page-title">Courses We Offer</h1>
+        
+        <div class="courses-intro" id="coursesIntro">
+            <p>Language Courses & Computer Courses</p>
+        </div>
+        
+        <div class="courses-container" id="coursesContainer">
+            <!-- MS Office -->
+            <div class="course-card">
+                <div class="course-title">MS Office</div>
+                <div class="course-content">Complete training in Microsoft Office applications</div>
+                <div class="duration">Duration: 3 Months</div>
+            </div>
+            
+            <!-- Advance Excel -->
+            <div class="course-card">
+                <div class="course-title">Advanced Excel</div>
+                <div class="course-content">Advanced data analysis and visualization techniques</div>
+                <div class="duration">Duration: 2 Months</div>
+            </div>
+            
+            <!-- C.I.T -->
+            <div class="course-card">
+                <div class="course-title">C.I.T</div>
+                <div class="course-content">Certificate in Information Technology fundamentals</div>
+                <div class="duration">Duration: 5 Months</div>
+            </div>
+            
+            <!-- P.C.I.T -->
+            <div class="course-card">
+                <div class="course-title">P.C.I.T</div>
+                <div class="course-content">Professional Certificate in Information Technology</div>
+                <div class="duration">Duration: 6 Months</div>
+            </div>
+            
+            <!-- D.I.T -->
+            <div class="course-card">
+                <div class="course-title">D.I.T</div>
+                <div class="course-content">Diploma in Information Technology</div>
+                <div class="duration">Duration: 10 Months</div>
+            </div>
+            
+            <!-- Basic Graphic -->
+            <div class="course-card">
+                <div class="course-title">Basic Graphic Design</div>
+                <div class="course-content">Fundamentals of graphic design and visual communication</div>
+                <div class="duration">Duration: 4 Months</div>
+            </div>
+            
+            <!-- Advance Graphic -->
+            <div class="course-card">
+                <div class="course-title">Advanced Graphic Design</div>
+                <div class="course-content">Advanced techniques in digital design and creative software</div>
+                <div class="duration">Duration: 4 Months</div>
+            </div>
+            
+            <!-- Textile Designing -->
+            <div class="course-card">
+                <div class="course-title">Textile Designing</div>
+                <div class="course-content">Pattern creation and textile design principles</div>
+                <div class="duration">Duration: 2 Months</div>
+            </div>
+            
+            <!-- Digital Marketing Module 1 -->
+            <div class="course-card">
+                <div class="course-title">Digital Marketing - Module 1</div>
+                <div class="course-content">Foundations of digital marketing strategies</div>
+                <div class="duration">Duration: 2 Months</div>
+            </div>
+            
+            <!-- Digital Marketing Module 2 -->
+            <div class="course-card">
+                <div class="course-title">Digital Marketing - Module 2</div>
+                <div class="course-content">Advanced digital marketing implementation</div>
+                <div class="duration">Duration: 6 Months</div>
+            </div>
+            
+            <!-- Web Designing -->
+            <div class="course-card">
+                <div class="course-title">Web Designing</div>
+                <div class="course-content">Modern web design principles and techniques</div>
+                <div class="duration">Duration: 4 Months</div>
+            </div>
+            
+            <!-- Web Development -->
+            <div class="course-card">
+                <div class="course-title">Web Development</div>
+                <div class="course-content">Full-stack web development skills</div>
+                <div class="duration">Duration: 6 Months</div>
+            </div>
+            
+            <!-- Freelancing -->
+            <div class="course-card">
+                <div class="course-title">Freelancing</div>
+                <div class="course-content">Building a successful freelance career</div>
+                <div class="duration">Duration: 5 Months</div>
+            </div>
+            
+            <!-- Video Editing -->
+            <div class="course-card">
+                <div class="course-title">Video Editing</div>
+                <div class="course-content">Professional video editing and production</div>
+                <div class="duration">Duration: 3 Months</div>
+            </div>
+            
+            <!-- Computer Hardware -->
+            <div class="course-card">
+                <div class="course-title">Computer Hardware</div>
+                <div class="course-content">PC assembly, maintenance, and troubleshooting</div>
+                <div class="duration">Duration: 1 Month</div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <p>Scroll to explore more courses</p>
+        </div>
+    </div>
+
+    <script>
+        // Create particles for the welcome scene
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 80;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                
+                // Random size
+                const size = Math.random() * 2 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random animation duration
+                const duration = Math.random() * 8 + 4;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                const delay = Math.random() * 5;
+                particle.style.animationDelay = `${delay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Show loading progress
+        function updateLoadingProgress() {
+            const loadingProgress = document.getElementById('loadingProgress');
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                } else {
+                    width++;
+                    loadingProgress.style.width = `${width}%`;
+                }
+            }, 60); // 6 seconds total for 100%
+        }
+        
+        // Hide welcome scene after 6 seconds
+        function hideWelcomeScene() {
+            updateLoadingProgress();
+            
+            setTimeout(() => {
+                const welcomeScene = document.getElementById('welcomeScene');
+                welcomeScene.style.opacity = '0';
+                
+                setTimeout(() => {
+                    welcomeScene.style.display = 'none';
+                    document.getElementById('mainContent').classList.add('visible');
+                    document.getElementById('coursesIntro').classList.add('visible');
+                    document.getElementById('coursesContainer').classList.add('visible');
+                    
+                    // Make course cards visible with staggered animation
+                    const courseCards = document.querySelectorAll('.course-card');
+                    courseCards.forEach((card, index) => {
+                        card.style.animationDelay = `${index * 0.05}s`;
+                        // Force reflow to restart animation
+                        card.style.animation = 'none';
+                        setTimeout(() => {
+                            card.style.animation = `cardAppear 0.6s forwards ${index * 0.05}s`;
+                        }, 10);
+                    });
+                    
+                    // Start smooth scrolling after cards appear
+                    setTimeout(() => {
+                        startScrolling();
+                    }, 1500);
+                    
+                    // Redirect to index.html after 8 seconds of showcasing courses
+                    setTimeout(() => {
+                        redirectToIndex();
+                    }, 8000);
+                }, 1200);
+            }, 6000); // 6 seconds for welcome scene
+        }
+        
+        // Function to scroll through courses smoothly
+        function startScrolling() {
+            const container = document.querySelector('.courses-container');
+            let scrollPosition = 0;
+            let startTime = null;
+            const duration = 6000; // 6 seconds for scrolling
+            const maxScroll = container.scrollHeight - container.clientHeight;
+            
+            // Hide scrollbar but keep scrolling functionality
+            container.style.scrollbarWidth = 'none';
+            container.style.msOverflowStyle = 'none';
+            container.style.paddingRight = '0';
+            
+            // Hide Webkit scrollbar
+            const style = document.createElement('style');
+            style.textContent = `
+                .courses-container::-webkit-scrollbar {
+                    display: none;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            function scrollStep(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Smooth scrolling with easing
+                const easeInOutCubic = progress < 0.5 
+                    ? 4 * progress * progress * progress 
+                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+                
+                // Calculate scroll position with easing
+                scrollPosition = easeInOutCubic * maxScroll;
+                container.scrollTop = scrollPosition;
+                
+                // Continue animation until duration is reached
+                if (progress < 1) {
+                    requestAnimationFrame(scrollStep);
+                } else {
+                    // Ensure we reach the bottom
+                    container.scrollTop = maxScroll;
+                }
+            }
+            
+            // Start the scrolling animation
+            requestAnimationFrame(scrollStep);
+        }
+        
+        // Function to redirect to index.html with animation
+        function redirectToIndex() {
+            const mainContent = document.getElementById('mainContent');
+            mainContent.style.transition = 'all 1.2s cubic-bezier(0.23, 1, 0.32, 1)';
+            mainContent.style.opacity = '0';
+            mainContent.style.transform = 'translateY(-30px) scale(0.98)';
+            
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1200);
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            hideWelcomeScene();
+        });
+    </script>
+</body>
+</html>
