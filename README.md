@@ -1,7 +1,7 @@
 <!-- 🌐 Europeance Learning Institute | Ultimate Web Experience 🌐 -->
 
 <h1 align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:000428,100:004e92&text=Europeance+Learning+Institute&fontAlign=50&fontAlignY=40&fontSize=40" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&,100:004e92&text=Europeance+Learning+Institute&fontAlign=50&fontAlignY=40&fontSize=40" />
 </h1>
 
 <p align="center">
