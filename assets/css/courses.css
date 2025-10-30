@@ -18,6 +18,7 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 .container {
@@ -75,6 +76,9 @@ header {
     background-clip: text;
     color: transparent;
     transition: var(--transition);
+    line-height: 1.2;
+    max-width: 400px;
+    word-spacing: 100vw;
 }
 
 nav ul {
@@ -118,6 +122,22 @@ nav ul li a:hover::before {
 
 nav ul li a:hover {
     color: #ffcc00;
+}
+
+nav ul li .register-link {
+    background: linear-gradient(135deg, var(--accent-orange), #e55a2b);
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    transition: var(--transition);
+}
+
+nav ul li .register-link:hover {
+    background: linear-gradient(135deg, #e55a2b, var(--accent-orange));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+    color: white;
 }
 
 /* Hero Section */
@@ -303,6 +323,7 @@ section {
     transform: translateY(50px);
     position: relative;
     z-index: 1;
+    border: 1px solid transparent;
 }
 
 .course-card::before {
@@ -324,7 +345,8 @@ section {
 
 .course-card:hover {
     transform: translateY(-15px) scale(1.02);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    border-color: var(--accent-orange);
 }
 
 .course-header {

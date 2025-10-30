@@ -23,6 +23,7 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 #three-bg {
@@ -50,6 +51,12 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+header:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 .header-content {
@@ -72,6 +79,10 @@ header {
 .logo-container h1 {
     font-size: 1.8rem;
     font-weight: 700;
+    line-height: 1.2;
+    max-width: 400px;
+    word-spacing: 100vw;
+    color: white;
 }
 
 nav ul {
@@ -97,6 +108,113 @@ nav ul li a {
 
 nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.2);
+}
+
+nav ul li .register-link {
+    background: linear-gradient(135deg, var(--accent-orange), #e55a2b);
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    transition: var(--transition);
+}
+
+nav ul li .register-link:hover {
+    background: linear-gradient(135deg, #e55a2b, var(--accent-orange));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+/* User Dropdown Menu */
+.user-dropdown {
+    position: relative;
+}
+
+.user-menu-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.user-menu-trigger:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    transform: translateY(-2px);
+}
+
+.user-name {
+    font-size: 0.95rem;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    min-width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+    color: white;
+    border-radius: 15px 15px 0 0;
+}
+
+.user-avatar {
+    font-size: 2.5rem;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.user-email {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.dropdown-item:hover {
+    background: var(--light-gray);
+}
+
+.logout-btn:hover {
+    background: rgba(255, 107, 53, 0.1);
+    color: var(--accent-orange);
 }
 
 /* Hero Section */
@@ -177,6 +295,12 @@ nav ul li a:hover {
     padding: 30px;
     border-radius: 10px;
     box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.about-text:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
 }
 
 .about-text p {
@@ -195,85 +319,107 @@ nav ul li a:hover {
     max-width: 100%;
     border-radius: 10px;
     box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.about-image img:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 /* Mission & Vision */
 .mission-vision {
     padding: 60px 0;
-    background-color: white;
+    background-color: #f8f9fa;
     margin-bottom: 60px;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
 }
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 30px;
+    padding: 0 20px;
 }
 
 .card {
-    background: var(--light-gray);
-    border-radius: 10px;
-    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    padding: 35px;
     text-align: center;
     transition: var(--transition);
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(26, 58, 143, 0.1);
 }
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border-color: var(--accent-orange);
 }
 
 .card-header {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .card-header i {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     color: var(--primary-blue);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    display: block;
+    transition: var(--transition);
+}
+
+.card:hover .card-header i {
+    color: var(--accent-orange);
+    transform: scale(1.1);
 }
 
 .card-header h3 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: var(--primary-blue);
+    margin-bottom: 0;
 }
 
 .card-body p {
-    color: #6c757d;
-    line-height: 1.8;
+    color: #555;
+    line-height: 1.9;
+    font-size: 1.05rem;
 }
 
 /* Leadership Section */
 .leadership {
     padding: 60px 0;
+    background-color: white;
 }
 
 .leaders {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr;
     gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .leader {
     display: flex;
     background: white;
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: var(--shadow);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
     animation: slideInUp 0.8s ease;
+    border: 1px solid rgba(26, 58, 143, 0.1);
 }
 
 .leader:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border-color: var(--accent-orange);
 }
 
 .leader-img {
-    flex: 0 0 40%;
+    flex: 0 0 35%;
+    min-height: 300px;
 }
 
 .leader-img img {
@@ -284,7 +430,7 @@ nav ul li a:hover {
 
 .leader-content {
     flex: 1;
-    padding: 25px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -292,28 +438,33 @@ nav ul li a:hover {
 
 .leader-content h3 {
     color: var(--primary-blue);
-    margin-bottom: 10px;
-    font-size: 1.3rem;
+    margin-bottom: 12px;
+    font-size: 1.4rem;
+    line-height: 1.4;
 }
 
 .position {
     color: var(--accent-orange);
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     display: block;
+    font-size: 1.05rem;
 }
 
 .leader-content p {
-    color: #6c757d;
-    margin-bottom: 15px;
-    line-height: 1.6;
+    color: #555;
+    margin-bottom: 12px;
+    line-height: 1.7;
+    font-size: 0.98rem;
 }
 
 .signature {
-    margin-top: auto;
+    margin-top: 15px;
     font-weight: 600;
     color: var(--primary-blue);
     font-style: italic;
+    padding-top: 15px;
+    border-top: 2px solid var(--light-gray);
 }
 
 /* Footer */
@@ -350,6 +501,30 @@ footer {
 .footer-section p {
     margin-bottom: 15px;
     color: #adb5bd;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 50%;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    background-color: var(--accent-orange);
+    transform: translateY(-3px);
 }
 
 .copyright {
@@ -450,12 +625,30 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .cards {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+
+    .card {
+        padding: 30px 25px;
+    }
+
     .leader {
         flex-direction: column;
     }
 
     .leader-img {
         flex: 0 0 auto;
+        min-height: 250px;
+    }
+
+    .leader-content {
+        padding: 25px;
+    }
+
+    .social-links {
+        justify-content: center;
     }
 }
 
@@ -476,7 +669,28 @@ footer {
         font-size: 1.8rem;
     }
 
-    .card, .leader-content {
+    .card {
+        padding: 25px 20px;
+    }
+
+    .card-header h3 {
+        font-size: 1.6rem;
+    }
+
+    .card-header i {
+        font-size: 3rem;
+    }
+
+    .leader-content {
         padding: 20px;
+    }
+
+    .leader-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .social-links a {
+        width: 45px;
+        height: 45px;
     }
 }

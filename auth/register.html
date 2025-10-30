@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - European Learning Institute</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="animated-bg">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Home Button -->
+    <a href="../index.html" class="home-btn" title="Back to Home">
+        <i class="fas fa-home"></i>
+    </a>
+
+    <!-- Main Container -->
+    <div class="auth-container">
+        <!-- Login Form -->
+        <div class="form-container" id="loginForm">
+            <div class="form-content">
+                <div class="form-illustration">
+                    <div class="character-container">
+                        <model-viewer
+                            src="https://modelviewer.dev/shared-assets/models/RobotExpressive.glb"
+                            alt="Login Character"
+                            auto-rotate
+                            camera-controls
+                            style="width: 100%; height: 200px;"
+                        ></model-viewer>
+                    </div>
+                </div>
+                
+                <div class="form-header">
+                    <div class="logo">
+                        <img src="../assets/images/logo-size-eli.jpg" alt="ELI Logo">
+                    </div>
+                    <h2>Welcome Back</h2>
+                    <p>Login to your account</p>
+                </div>
+
+                <form id="loginFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">
+                            <i class="fas fa-envelope"></i> Email Address
+                        </label>
+                        <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <div class="password-wrapper">
+                            <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                            <button type="button" class="toggle-password" data-target="loginPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+
+                    <div class="form-footer">
+                        <p>Don't have an account? <a href="#" class="toggle-form" data-target="signupForm">Sign Up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Signup Form -->
+        <div class="form-container hidden" id="signupForm">
+            <div class="form-content">
+                <div class="form-illustration">
+                    <div class="character-container">
+                        <model-viewer
+                            src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                            alt="Signup Character"
+                            auto-rotate
+                            camera-controls
+                            style="width: 100%; height: 200px;"
+                        ></model-viewer>
+                    </div>
+                </div>
+                
+                <div class="form-header">
+                    <div class="logo">
+                        <img src="../assets/images/logo-size-eli.jpg" alt="ELI Logo">
+                    </div>
+                    <h2>Create Account</h2>
+                    <p>Join European Learning Institute</p>
+                </div>
+
+                <form id="signupFormElement" class="auth-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="signupFirstName">
+                                <i class="fas fa-user"></i> First Name
+                            </label>
+                            <input type="text" id="signupFirstName" placeholder="First name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupLastName">
+                                <i class="fas fa-user"></i> Last Name
+                            </label>
+                            <input type="text" id="signupLastName" placeholder="Last name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupEmail">
+                            <i class="fas fa-envelope"></i> Email Address
+                        </label>
+                        <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupPassword">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <div class="password-wrapper">
+                            <input type="password" id="signupPassword" placeholder="Create password" required>
+                            <button type="button" class="toggle-password" data-target="signupPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button type="button" class="generate-password" title="Generate Password">
+                                <i class="fas fa-key"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="password-strength" id="passwordStrength">
+                        <div class="strength-bar">
+                            <div class="strength-fill"></div>
+                        </div>
+                        <span class="strength-text">Password Strength</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">
+                            <i class="fas fa-lock"></i> Confirm Password
+                        </label>
+                        <div class="password-wrapper">
+                            <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                            <button type="button" class="toggle-password" data-target="confirmPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeTerms" required>
+                            <span>I agree to the <a href="#">Terms & Conditions</a></span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+
+                    <div class="form-footer">
+                        <p>Already have an account? <a href="#" class="toggle-form" data-target="loginForm">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Generator Modal -->
+    <div class="modal" id="passwordModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-key"></i> Password Generator</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="generated-password">
+                    <input type="text" id="generatedPassword" readonly>
+                    <button class="copy-btn" title="Copy Password">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+
+                <div class="password-options">
+                    <div class="option-group">
+                        <label>Password Length: <span id="lengthValue">12</span></label>
+                        <input type="range" id="passwordLength" min="8" max="32" value="12">
+                    </div>
+
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeUppercase" checked>
+                            <span>Include Uppercase (A-Z)</span>
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeLowercase" checked>
+                            <span>Include Lowercase (a-z)</span>
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeNumbers" checked>
+                            <span>Include Numbers (0-9)</span>
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeSymbols" checked>
+                            <span>Include Symbols (!@#$%)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn-secondary" id="generateBtn">
+                        <i class="fas fa-sync-alt"></i> Generate
+                    </button>
+                    <button class="btn-primary" id="usePasswordBtn">
+                        <i class="fas fa-check"></i> Use Password
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="notification-icon"></i>
+            <span class="notification-message"></span>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

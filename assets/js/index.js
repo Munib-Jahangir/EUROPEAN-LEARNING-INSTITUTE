@@ -168,6 +168,17 @@ function initSmoothScrolling() {
 
 // Initialize everything when the page loads
 document.addEventListener('DOMContentLoaded', function() {
+    // Hide page loader
+    setTimeout(function() {
+        const loader = document.getElementById('pageLoader');
+        if (loader) {
+            loader.classList.add('hidden');
+            setTimeout(function() {
+                loader.style.display = 'none';
+            }, 500);
+        }
+    }, 1000);
+
     // Initialize Three.js background
     initThreeBackground();
     
@@ -179,4 +190,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize smooth scrolling
     initSmoothScrolling();
+    
+    // Back to top button
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+        
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });

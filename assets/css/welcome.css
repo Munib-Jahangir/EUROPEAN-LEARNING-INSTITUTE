@@ -13,6 +13,7 @@ body {
     font-family: 'Inter', sans-serif;
     overflow: hidden;
     height: 100vh;
+    scroll-behavior: smooth;
 }
 
 .container {
@@ -229,9 +230,13 @@ body {
 }
 
 .course-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-8px) scale(1.03);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.course-card:hover .course-title {
+    color: #ffcc00;
 }
 
 .course-card:hover::before {
@@ -357,6 +362,9 @@ body {
     background-clip: text;
     color: transparent;
     transition: all 0.3s ease;
+    line-height: 1.2;
+    max-width: 400px;
+    word-spacing: 100vw;
 }
 
 nav ul {
@@ -400,6 +408,22 @@ nav ul li a:hover::before {
 
 nav ul li a:hover {
     color: #ffcc00;
+}
+
+nav ul li .register-link {
+    background: linear-gradient(135deg, #ff6b35, #e55a2b);
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    transition: all 0.3s ease;
+}
+
+nav ul li .register-link:hover {
+    background: linear-gradient(135deg, #e55a2b, #ff6b35);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+    color: white;
 }
 
 /* Responsive Design */
